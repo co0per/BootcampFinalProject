@@ -1,0 +1,17 @@
+Mini youtube
+
+buscar --> No mandar caracter por caracter (debounce --> Espero 500ms hasta que entre otra recien ahi mando)
+lista de videos
+player
+Descripcion
+
+autenticaciodn OAUTH (evitarlo)
+API de youtube
+
+Minimo que ande
+
+
+Agregable:
+Historial
+Boton de repeat
+Colas
