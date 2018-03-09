@@ -3,6 +3,7 @@ Renders the app!
 *****************************************************************************/
 
 import React from 'react'
+
 import VideoArea from './video_area.js'
 import {Video} from '../lib/video_utils.js'
 
