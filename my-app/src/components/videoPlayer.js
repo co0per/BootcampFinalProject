@@ -3,8 +3,8 @@ Video viewer players renders both the viewer and the settings area.
 *****************************************************************************/
 
 import React from 'react'
-import VideoPlayerViewer from './video_player_viewer.js'
-import VideoPlayerSettings from './video_player_settings.js'
+import VideoPlayerViewer from './videoPlayerViewer.js'
+import VideoPlayerSettings from './videoPlayerSettings.js'
 
 const noVideoImgURL = "img/no_video_loaded.jpg"
 

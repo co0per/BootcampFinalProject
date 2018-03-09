@@ -1,5 +1,5 @@
 import React from 'react'
-import '../css/styles.css'
+import '../css/videoList.css'
 
 function VideoList(props) {
 
@@ -16,7 +16,7 @@ function VideoList(props) {
     }
 
     return (
-        <div>
+        <div className="vidlist">
             <ul>
                 {videos}
             </ul>
