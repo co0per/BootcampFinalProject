@@ -3,8 +3,9 @@ Video viewer players renders both video player and the video data area.
 *****************************************************************************/
 
 import React from 'react'
-import VideoPlayer from './video_player.js'
-import VideoFooter from './video_footer.js'
+import VideoPlayer from './videoPlayer.js'
+import VideoFooter from './videoFooter.js'
+import '../css/videoArea.css'
 
 export default class VideoArea extends React.Component {
 
@@ -14,7 +15,7 @@ export default class VideoArea extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="vidarea">
 
         <VideoPlayer
           title={this.props.title}

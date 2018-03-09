@@ -2,3 +2,8 @@ img {
     width: 120px;
     height: 90px;   
 }
+
+body {
+	background: linear-gradient(to right, #ff9400 , #ffa62b);
+	font-family: sans-serif;
+}
