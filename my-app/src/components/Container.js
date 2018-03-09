@@ -7,14 +7,21 @@ class Container extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+            videos: []
         };
     }
-
+    handleSearch(videos) {
+        this.setState({
+            videos: videos
+        });
+    }
     render() {
         return (
-            <Input />
-        )
+            <div>
+                <Input onChange={videos => this.handleSearch(videos)}/>
+                <VideoList videos={this.state.videos}/>
+            </div>
+        );
     }
 }
 

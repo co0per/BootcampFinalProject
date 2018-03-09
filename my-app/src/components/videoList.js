@@ -1,15 +1,24 @@
 import React from 'react'
 
-class VideoList extends React.Component {
+function VideoList(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {};
+    let videos = props.videos;
+
+    if(videos) {
+        videos = videos.map((video) => {
+            return <li key={video.id}>
+                        {video.title}
+                   </li>
+        });
     }
 
-    render() {
-        return {}
-    }
+    return (
+        <div>
+            <ul>
+                {videos}
+            </ul>
+        </div>
+    );
 }
 
 export default VideoList;

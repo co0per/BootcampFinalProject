@@ -21,19 +21,32 @@ class Input extends React.Component {
     }
 
     handleInputChange(e) {
+        // We handle input change
         let searchString = this.state.searchString;
         searchString = e.target.value;
         this.setState({
             searchString: searchString
         });
-        partialURL += "&q=" + searchString;
-        fetch(partialURL)
+
+        // Then, we complete de URL and make the Promise.
+        // When it is done, we clear the URL so we can do another search
+        let finalURL = partialURL + "&q=" + searchString;
+        fetch(finalURL)
           .then((response) => response.json())
           .then((responseJson) => {
-             console.log(responseJson);
             //const resultyt = responseJson.items.map(obj => "https://www.youtube.com/embed/"+obj.id.videoId);
-            const resultyt = responseJson.items.map(obj => "https://www.youtube.com/watch?v="+obj.id.videoId);
-            this.setState({result: resultyt});
+            //const resultyt = responseJson.items.map((obj) => "https://www.youtube.com/watch?v="+obj.id.videoId);
+            const resultyt = responseJson.items.map((item) => {
+                 return {
+                    id: item.id.videoId,
+                    link: "https://www.youtube.com/watch?v="+item.id.videoId,
+                    title: item.snippet.title,
+                    description: item.snippet.description
+                 }
+            });
+            this.props.onChange(resultyt); //not sure about this
+            //console.log(resultyt);
+            finalURL = '';
           })
           .catch((error) => {
             console.error(error);
