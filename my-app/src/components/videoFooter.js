@@ -6,9 +6,6 @@ import React from 'react'
 
 
 export default class VideoFooter extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     const video = this.props.video;
