@@ -17,9 +17,14 @@ function VideoList(props) {
 
     return (
         <div className="vidlist">
-            <ul>
-                {videos}
-            </ul>
+            {
+                videos.length > 0 
+                    ?   <ul>
+                            {videos}
+                        </ul>
+                    :   null
+            }
+            
         </div>
     );
 }
