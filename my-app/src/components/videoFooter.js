@@ -14,12 +14,12 @@ export default class VideoFooter extends React.Component {
     return (
       <article>
         <header>
-          <h3> {this.props.title} </h3>
+          <h3> {this.props.video ? this.props.video.title : null} </h3>
           <hr />
         </header>
 
         <article>
-          <p> {this.props.description} </p>
+          <p> {this.props.video ? this.props.video.description : null} </p>
         </article>
       </article>
     )
