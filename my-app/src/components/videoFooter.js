@@ -17,7 +17,7 @@ export default class VideoFooter extends React.Component {
         <header>
             {
                 video 
-                    ?  <h3>video.title</h3>
+                    ?  <h3>{video.title}</h3>
                     :  null
             }
         </header>

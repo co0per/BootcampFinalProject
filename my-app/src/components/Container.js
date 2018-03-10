@@ -19,7 +19,8 @@ class Container extends React.Component {
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        /*TODO: Will playing lists be available? */
+        /*TODO: Will playing lists be available?
+         Answer: No.*/
     }
 
     handleSearch(videos) {
