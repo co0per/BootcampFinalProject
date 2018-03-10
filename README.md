@@ -6,7 +6,7 @@ Gerardo Alias
 Matias Iampietro  
 Lisandro Cooper
 
-##Usage
+## Usage
 
 Clone this repo. Inside the folder, run
 
