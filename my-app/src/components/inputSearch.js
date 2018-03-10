@@ -57,7 +57,6 @@ class Input extends React.Component {
                         if(item.snippet.thumbnails) {
                             return {
                                 id: item.id.videoId,
-                                link: "https://www.youtube.com/watch?v="+item.id.videoId,
                                 title: item.snippet.title,
                                 description: item.snippet.description,
                                 img: item.snippet.thumbnails.default.url
@@ -65,7 +64,6 @@ class Input extends React.Component {
                         } else {
                             return {
                                 id: item.id.videoId,
-                                link: "https://www.youtube.com/watch?v="+item.id.videoId,
                                 title: item.snippet.title,
                                 description: item.snippet.description,
                                 img: 'https://s3.ap-south-1.amazonaws.com/iquppo-image-upload/assets/uploads/1514528162892/IQ_SK_KNR_198-05.png'

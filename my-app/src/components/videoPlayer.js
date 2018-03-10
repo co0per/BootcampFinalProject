@@ -15,26 +15,31 @@ export default class VideoPlayer extends React.Component {
   }
 
   render() {
+    const ableToShow = this.props.ableToShow;
     return (
       <div>
 
-        {this.props.videoId ?
-          <VideoPlayerViewer
-            title={this.props.title}
-            videoId={this.props.videoId}
-            defaultHeight={this.props.defaultHeight}
-            defaultWidth={this.props.defaultWidth} /> :
-          <img
-            src={noVideoImgURL}
-            alt="No video has been loaded..."
-            height={this.props.defaultHeight}
-            width={this.props.defaultWidth}
-          />}
+        {
+            ableToShow
+                ?   <VideoPlayerViewer
+                        title={this.props.title}
+                        videoId={this.props.videoId}
+                        defaultHeight={this.props.defaultHeight}
+                        defaultWidth={this.props.defaultWidth} 
+                    />
+                :   <img
+                        src={noVideoImgURL}
+                        alt="No video has been loaded..."
+                        height={this.props.defaultHeight}
+                        width={this.props.defaultWidth}
+                    />
+          
+        }
 
         <VideoPlayerSettings />
 
       </div>
-    )
+    );
   }
 
 }
