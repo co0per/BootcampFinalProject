@@ -17,7 +17,8 @@ export default class VideoPlayerViewer extends React.Component {
     super(props);
 
     this.state = {
-      videoId: null,
+      playerError: false,
+      videoLoaded: false
     }
   }
 
@@ -35,7 +36,8 @@ export default class VideoPlayerViewer extends React.Component {
         width: this.props.defaultWidth,
         events: {
           'onReady': this.onPlayerReady.bind(this),
-          'onStateChange': this.onPlayerStateChange.bind(this)
+          'onStateChange': this.onPlayerStateChange.bind(this),
+          'onError': this.onPlayerError.bind(this)
         }
       })
     })
@@ -54,13 +56,21 @@ export default class VideoPlayerViewer extends React.Component {
 
   //Prevents component rendering when settings are changed.
   shouldComponentUpdate(nextProps, nextState) {
-    return this.props.video !== nextProps.video
+    return this.props.video !== nextProps.video;
   }
 
   onPlayerReady(event) {
 
     //This line is used for debugging purpose. Commit if not necessary.
     console.log("Player Ready...");
+
+    if(this.props.video) {
+      this.player.clearVideo();
+      this.player.cueVideoById(this.props.video.id)
+      if(this.props.autoplay) {
+        this.player.playVideo();
+      }
+    }
 
   }
 
@@ -79,11 +89,24 @@ export default class VideoPlayerViewer extends React.Component {
         break;
     }
 
+    //Finally calls parent handleChange method
+    this.props.onChange()
+
+  }
+
+  onPlayerError(event) {
+    //TODO: implement
+    console.log("Player error: " + event.data)
+
+    this.props.onError(event.data);
   }
 
   render() {
     return (
-      <div id={iframeId}> </div>
+      <div
+        className={this.props.className}
+        id={iframeId}>
+      </div>
     )
   }
 }
