@@ -44,9 +44,8 @@ class Container extends React.Component {
                 />
                 <VideoArea
                     video={this.state.particularVideo}
-                    ableToShow={this.state.ableToShow}
                     defaultHeight="360"
-                    defaultWidth="640" 
+                    defaultWidth="640"
                 />
             </div>
         );
