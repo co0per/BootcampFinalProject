@@ -37,7 +37,7 @@ export function initYouTubeAPI() {
       tag.src = 'https://www.youtube.com/iframe_api';
       const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      window.onYouTubeIframeAPIReady = () => {console.log("chota");resolve(window.YT)};
+      window.onYouTubeIframeAPIReady = () => {resolve(window.YT)};
     })
   }
 

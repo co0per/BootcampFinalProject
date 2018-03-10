@@ -13,10 +13,6 @@ export const autoplay = "autoplay";
 
 export class VideoPlayerSettings extends React.Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   repeatToggled() {
     this.props.onChangeCfg(repeat);
   }
