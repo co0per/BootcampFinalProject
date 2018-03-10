@@ -11,15 +11,18 @@ export default class VideoFooter extends React.Component {
   }
 
   render() {
+    const video = this.props.video;
     return (
       <article>
         <header>
-          <h3> {this.props.video ? this.props.video.title : null} </h3>
-          <hr />
+            {
+                video 
+                    ?  <h3>video.title</h3>
+                    :  null
+            }
         </header>
-
         <article>
-          <p> {this.props.video ? this.props.video.description : null} </p>
+          <p> {video ? video.description : null} </p>
         </article>
       </article>
     )
