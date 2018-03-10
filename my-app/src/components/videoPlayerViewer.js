@@ -3,9 +3,10 @@ Video viewer renders Iframe component that allows viewing videos.
 *****************************************************************************/
 
 import React from 'react'
+import {initYouTubeAPI} from '../lib/video_utils.js'
 
 //Youtube URL constant
-const baseURL = "https://www.youtube.com/embed/"
+//const baseURL = "https://www.youtube.com/embed/"
 const iframeId = "player"
 
 
@@ -15,32 +16,74 @@ export default class VideoPlayerViewer extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      videoId: null,
+    }
   }
 
-  onPlayerReady() {
-    console.log("Player Ready....");
+  /*ComponentDidMount is called as soon as render method has been executed. This
+  means that when componentDidMount mount is called the video container already
+  exists. At this point YT API is loaded and player is initialized*/
+  componentDidMount() {
+
+    const loadYT = initYouTubeAPI();
+
+    loadYT.then((YT) => {
+      this.player = new YT.Player(iframeId, {
+        videoId: "none",
+        height: this.props.defaultHeight,
+        width: this.props.defaultWidth,
+        events: {
+          'onReady': this.onPlayerReady.bind(this),
+          'onStateChange': this.onPlayerStateChange.bind(this)
+        }
+      })
+    })
   }
 
-  onPlayerStateChange() {
-    console.log("PlayerSateChanged....");
+  //When component is update it loads the video which Id is passed by props.
+  componentDidUpdate() {
+    if(this.props.video) {
+      this.player.clearVideo();
+      this.player.cueVideoById(this.props.video.id)
+      if(this.props.autoplay) {
+        this.player.playVideo();
+      }
+    }
+  }
+
+  //Prevents component rendering when settings are changed.
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.video !== nextProps.video
+  }
+
+  onPlayerReady(event) {
+
+    //This line is used for debugging purpose. Commit if not necessary.
+    console.log("Player Ready...");
+
+  }
+
+  onPlayerStateChange(event) {
+
+    //This line is used for debugging purpose. Commit if not necessary.
+    console.log("PlayerSateChanged: " + event.data);
+
+    switch(event.data){
+      case 0:
+        if(this.props.loopplay) {
+          event.target.playVideo();
+        }
+        break;
+      default:
+        break;
+    }
+
   }
 
   render() {
-    const url = `${baseURL}${this.props.videoId}?autoplay=1&enablejsapi=1`;
-
     return (
-      <iframe
-        id={iframeId}
-        title={this.props.title}
-        src={url}
-        allowFullScreen="true"
-        height={this.props.defaultHeight}
-        width={this.props.defaultWidth}
-        enablejsapi="1">
-
-        <p> Your broser does not support iframes... </p>
-
-      </iframe>
+      <div id={iframeId}> </div>
     )
   }
 }

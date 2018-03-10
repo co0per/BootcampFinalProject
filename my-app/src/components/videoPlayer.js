@@ -4,42 +4,58 @@ Video viewer players renders both the viewer and the settings area.
 
 import React from 'react'
 import VideoPlayerViewer from './videoPlayerViewer.js'
-import VideoPlayerSettings from './videoPlayerSettings.js'
-
-const noVideoImgURL = "img/no_video_loaded.jpg"
+import {
+  VideoPlayerSettings,
+  repeat,
+  autoplay
+} from './videoPlayerSettings.js'
 
 export default class VideoPlayer extends React.Component {
 
   constructor(props) {
     super(props)
+
+    this.state = {
+      autoplay: true,
+      loopplay: false
+    }
   }
 
+  handleChangeCfg(target, value) {
+    switch (target) {
+      case repeat:
+        this.setState({
+          loopplay: !this.state.loopplay
+        })
+        break;
+      case autoplay:
+        this.setState({
+          autoplay: !this.state.autoplay
+        })
+        break;
+      default:
+        break;
+    }
+  }
+
+
   render() {
-    const ableToShow = this.props.ableToShow;
+
     return (
       <div>
 
-        {
-            ableToShow
-                ?   <VideoPlayerViewer
-                        title={this.props.title}
-                        videoId={this.props.videoId}
-                        defaultHeight={this.props.defaultHeight}
-                        defaultWidth={this.props.defaultWidth} 
-                    />
-                :   <img
-                        src={noVideoImgURL}
-                        alt="No video has been loaded..."
-                        height={this.props.defaultHeight}
-                        width={this.props.defaultWidth}
-                    />
-          
-        }
+        <VideoPlayerViewer
+          video={this.props.video}
+          autoplay={this.state.autoplay}
+          loopplay={this.state.loopplay}
+          defaultHeight={this.props.defaultHeight}
+          defaultWidth={this.props.defaultWidth} />
 
-        <VideoPlayerSettings />
+        <VideoPlayerSettings
+          onChangeCfg={this.handleChangeCfg.bind(this)}/>
 
       </div>
-    );
+    )
   }
 
 }
