@@ -2,7 +2,6 @@ import React from 'react'
 import Input from './inputSearch'
 import VideoList from './videoList'
 import VideoArea from './videoArea.js'
-import {Video} from '../lib/video_utils.js'
 import style from '../css/styles.css'
 
 //Constants:
@@ -14,8 +13,7 @@ class Container extends React.Component {
         super(props);
         this.state = {
             videos: [],
-            particularVideo: null,
-            ableToShow: false
+            particularVideo: null
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -31,8 +29,7 @@ class Container extends React.Component {
 
     handleClick(video) {
         this.setState({
-            particularVideo: video,
-            ableToShow: true
+            particularVideo: video
         });
     }
 
@@ -45,8 +42,6 @@ class Container extends React.Component {
                 />
                 <VideoArea
                     video={this.state.particularVideo}
-                    defaultHeight="360"
-                    defaultWidth="640"
                 />
             </div>
         );

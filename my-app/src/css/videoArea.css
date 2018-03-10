@@ -9,3 +9,12 @@ section.vidarea {
   position: relative;
   float: left;
 }
+
+
+
+.no-video-img {
+	top: 0;
+	right: 0;
+	height: 360px;
+	width: 640px;
+}
