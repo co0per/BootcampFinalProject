@@ -14,20 +14,28 @@ export default class VideoArea extends React.Component {
   }
 
   render() {
+    const ableToShow = this.props.ableToShow;
     return (
       <section className="vidarea">
+        {
+            ableToShow
+                ?   <div>
+                        <VideoPlayer
+                          title={this.props.video.title}
+                          videoId={this.props.video.videoId}
+                          ableToShow={this.props.ableToShow}
+                          defaultHeight={this.props.defaultHeight}
+                          defaultWidth={this.props.defaultWidth} />
 
-        <VideoPlayer
-          title={this.props.title}
-          videoId={this.props.videoId}
-          defaultHeight={this.props.defaultHeight}
-          defaultWidth={this.props.defaultWidth} />
+                        <VideoFooter
+                          title={this.props.title}
+                          description={this.props.video.description} />
+                    </div>
 
-        <VideoFooter
-          title={this.props.title}
-          description={this.props.description} />
-
+                : null
+        }
+        
       </section>
-    )
+    );
   }
 }
