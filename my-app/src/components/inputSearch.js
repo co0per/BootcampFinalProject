@@ -29,29 +29,9 @@ class Input extends React.Component {
         // Then, we complete de URL and make the Promise.
         // When it is done, we clear the URL so we can do another search
         let finalURL = partialURL + "&q=" + searchString;
-        /*fetch(finalURL)
-          .then((response) => response.json())
-          .then((responseJson) => {
-            //const resultyt = responseJson.items.map(obj => "https://www.youtube.com/embed/"+obj.id.videoId);
-            //const resultyt = responseJson.items.map((obj) => "https://www.youtube.com/watch?v="+obj.id.videoId);
-            const resultyt = responseJson.items.map((item) => {
-                 return {
-                    id: item.id.videoId,
-                    link: "https://www.youtube.com/watch?v="+item.id.videoId,
-                    title: item.snippet.title,
-                    description: item.snippet.description
-                 }
-            });
-
-            this.props.onChange(resultyt); //not sure about this
-            //console.log(responseJson);
-            finalURL = '';
-          })
-          .catch((error) => {
-            console.error(error);
-          });*/
-
-          axios.get(finalURL)
+        const notEmpty = this.inputIsNotEmpty();
+        if(notEmpty){
+            axios.get(finalURL)
                 .then((response) => {
                     const result = response.data.items.map((item) => {
                         if(item.snippet.thumbnails) {
@@ -70,12 +50,23 @@ class Input extends React.Component {
                             }
                         }
                     });
-                    this.props.onChange(result);
+                    const filteredResult = result.filter((video) => {
+                            return video.id !== undefined;
+                    });
+                    this.props.onChange(filteredResult);
                     finalURL = '';
                 })
                 .catch((err) => {
                 console.log(err);
                 })
+        }
+    }
+
+    inputIsNotEmpty() {
+        const searchString = this.state.searchString;
+        return (
+            searchString.length > 0
+        )
     }
 
     render() {

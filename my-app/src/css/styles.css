@@ -4,6 +4,17 @@ img {
 }
 
 body {
-	background: linear-gradient(to right, #ff9400 , #ffa62b);
 	font-family: sans-serif;
+}
+
+html {
+  /* subtlepatterns.com */
+    background: url("http://neilcarpenter.com/demos/asfalt.png") repeat;
+}
+
+h3 {
+    max-width: 40%;
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
 }
