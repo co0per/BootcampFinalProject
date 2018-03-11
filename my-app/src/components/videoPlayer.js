@@ -9,21 +9,15 @@ import {
   repeat,
   autoplay
 } from './videoPlayerSettings.js'
+import VideoPlayerErrorPane from './videoPlayerErrorPane.js'
 
-const videoViewerWidth = "640";
-const videoViewerHeight = "360";
-const videoPlayerClass = "video-player";
+const videoViewerWidth = "100%";
+const videoViewerHeight = "360px";
+const videoPlayerAreaClass = "video-player-area";
+const iframeWrapperClass = "iframe-wrapper";
 const noPlayerImgClass = "no-video-img";
 const noVideoImgSrc = "img/no_video.jpg";
 const noVideoImgAlt = "No video has been loaded";
-const videoError = {
-  '2': "Bad video ID.",
-  '5': "Can't play this video on HTML5 player.",
-  '100': "The requested video is no longer available.",
-  '101': "The requested video can't be played on this player.",
-  '150': "The requested video can't be played on this player.",
-  unknown: "An unknown error has been produced."
-}
 
 export default class VideoPlayer extends React.Component {
 
@@ -32,7 +26,7 @@ export default class VideoPlayer extends React.Component {
 
     this.state = {
       playerError: false,
-      errorMsg: null,
+      playerErrorCode: null,
       autoplay: true,
       loopplay: false
     }
@@ -55,74 +49,52 @@ export default class VideoPlayer extends React.Component {
     }
   }
 
-
-  /*If an error occurs on the player a message will be displayed below the
-  player's view area */
-  handleError(err) {
-    let errMsg;
-
-    //Determines the cause of the error.
-    switch (err) {
-      case 2:
-        errMsg = videoError.badID;
-        break;
-      case 5:
-        errMsg = videoError.htmlError;
-        break;
-      case 100:
-        errMsg = videoError.notAvailable;
-        break;
-      case 101:
-      case 150:
-        errMsg = videoError.cantPlay;
-        break;
-      default:
-        errMsg = videoError.unknown;
-        break;
-    }
-
-    this.setState({
-      playerError: true,
-      errorMsg: errMsg
-    })
-
-  }
-
-  /*When a change is produced on the player, error state is cleared (it will
-  be trigerred again if an error occurs again.)*/
-  handleChange() {
+  /*According to react doc: This method is invoked before a mounted component
+  receives new props and should be used if state should change when this props
+  are received. Thats what we do here when a new video is received the error
+  state is reset*/
+  componentWillReceiveProps(nextProps) {
     this.setState({
       playerError: false,
-      errMsg: null
+      playerErrorCode: null
     })
   }
 
+  handleError(errCode) {
+    this.setState({
+      playerError:true,
+      playerErrorCode: errCode
+    })
+  }
 
   render() {
 
+    /*If an error is detected on the player an error pane will be displayed on
+    top of the player, if no video is loaded a no video img will be displayed*/
     return (
-      <div className={videoPlayerClass}>
+      <div className={videoPlayerAreaClass}>
 
-        {this.props.video && !this.state.playerError?
+        <div className={iframeWrapperClass}>
+
           <VideoPlayerViewer
             video={this.props.video}
             autoplay={this.state.autoplay}
             loopplay={this.state.loopplay}
             defaultHeight={videoViewerHeight}
             defaultWidth={videoViewerWidth}
-            onError={this.handleError.bind(this)}
-            onChange={this.handleChange.bind(this)}/>
-          :
-          <img
-            className={noPlayerImgClass}
-            src={noVideoImgSrc}
-            alt={noVideoImgAlt} />}
+            onError={this.handleError.bind(this)}/>
 
-        {this.state.playerError ?
-          <p> {this.state.errorMsg} </p>
-          :
-          null
-        }
+          {!this.props.video ?
+            <img
+              className={noPlayerImgClass}
+              src={noVideoImgSrc}
+              alt={noVideoImgAlt} /> : null}
+
+          {this.state.playerError ?
+            <VideoPlayerErrorPane
+              errorCode={this.state.playerErrorCode}/> : null}
+
+        </div>
 
         <VideoPlayerSettings
           onChangeCfg={this.handleChangeCfg.bind(this)}/>

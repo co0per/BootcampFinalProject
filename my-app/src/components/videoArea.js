@@ -7,11 +7,13 @@ import VideoPlayer from './videoPlayer.js';
 import VideoFooter from './videoFooter.js';
 import '../css/videoArea.css';
 
+const videoAreaClass = "vidArea"
+
 export default class VideoArea extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className={videoAreaClass}>
 
         <VideoPlayer
           video={this.props.video} />
