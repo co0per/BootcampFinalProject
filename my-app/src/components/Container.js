@@ -2,7 +2,7 @@ import React from 'react'
 import Input from './inputSearch'
 import VideoList from './videoList'
 import VideoArea from './videoArea.js'
-import style from '../css/styles.css'
+import '../css/styles.css'
 
 //Constants:
 const appBodyClass = "app-body";
