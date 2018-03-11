@@ -11,6 +11,25 @@ section.vidarea {
 }
 
 
+.video-player-area {
+	position: relative;
+	height: 360px	;
+	width: 640px;
+}
+
+.player-err-pane {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	margin: 0;
+	height: 340px;
+	width: 620px;
+	background-image: url("../img/error_pane_background.png");
+	background-size: contain;
+	color: white;
+}
+
 
 .no-video-img {
 	top: 0;

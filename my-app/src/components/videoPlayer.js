@@ -4,6 +4,7 @@ Video viewer players renders both the viewer and the settings area.
 
 import React from 'react'
 import VideoPlayerViewer from './videoPlayerViewer.js'
+import VideoPlayerError from './videoPlayerError.js'
 import {
   VideoPlayerSettings,
   repeat,
@@ -12,18 +13,10 @@ import {
 
 const videoViewerWidth = "640";
 const videoViewerHeight = "360";
-const videoPlayerClass = "video-player";
+const videoPlayerAreaClass = "video-player-area";
 const noPlayerImgClass = "no-video-img";
 const noVideoImgSrc = "img/no_video.jpg";
 const noVideoImgAlt = "No video has been loaded";
-const videoError = {
-  '2': "Bad video ID.",
-  '5': "Can't play this video on HTML5 player.",
-  '100': "The requested video is no longer available.",
-  '101': "The requested video can't be played on this player.",
-  '150': "The requested video can't be played on this player.",
-  unknown: "An unknown error has been produced."
-}
 
 export default class VideoPlayer extends React.Component {
 
@@ -32,10 +25,14 @@ export default class VideoPlayer extends React.Component {
 
     this.state = {
       playerError: false,
-      errorMsg: null,
+      errorCode: null,
       autoplay: true,
       loopplay: false
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !(this.state.playerError && !nextState.playerError)
   }
 
   handleChangeCfg(target, value) {
@@ -55,74 +52,62 @@ export default class VideoPlayer extends React.Component {
     }
   }
 
-
   /*If an error occurs on the player a message will be displayed below the
   player's view area */
-  handleError(err) {
-    let errMsg;
-
-    //Determines the cause of the error.
-    switch (err) {
-      case 2:
-        errMsg = videoError.badID;
-        break;
-      case 5:
-        errMsg = videoError.htmlError;
-        break;
-      case 100:
-        errMsg = videoError.notAvailable;
-        break;
-      case 101:
-      case 150:
-        errMsg = videoError.cantPlay;
-        break;
-      default:
-        errMsg = videoError.unknown;
-        break;
-    }
+  handleError(err, player) {
 
     this.setState({
       playerError: true,
-      errorMsg: errMsg
+      errorCode: err
     })
 
   }
 
   /*When a change is produced on the player, error state is cleared (it will
-  be trigerred again if an error occurs again.)*/
+  be trigerred again if the error happens again.)*/
   handleChange() {
     this.setState({
       playerError: false,
-      errMsg: null
+      errorCode: null
     })
   }
 
 
   render() {
 
+    let playerPane;
+
+    //If a video is loaded video player is rendered.
+    if(this.props.video) {
+      playerPane = (
+        <VideoPlayerViewer
+          video={this.props.video}
+          autoplay={this.state.autoplay}
+          loopplay={this.state.loopplay}
+          defaultHeight={videoViewerHeight}
+          defaultWidth={videoViewerWidth}
+          onError={this.handleError.bind(this)}
+          onChange={this.handleChange.bind(this)}/>
+        );
+    }
+    //Otherwise a no video image is rendered.
+    else {
+      playerPane = (
+        <img
+          className={noPlayerImgClass}
+          src={noVideoImgSrc}
+          alt={noVideoImgAlt} />
+        );
+    }
+
+
+    /*If an error is detected on the player an error pane will be displayed on
+    top of the player*/
     return (
-      <div className={videoPlayerClass}>
+      <div className={videoPlayerAreaClass}>
 
-        {this.props.video && !this.state.playerError?
-          <VideoPlayerViewer
-            video={this.props.video}
-            autoplay={this.state.autoplay}
-            loopplay={this.state.loopplay}
-            defaultHeight={videoViewerHeight}
-            defaultWidth={videoViewerWidth}
-            onError={this.handleError.bind(this)}
-            onChange={this.handleChange.bind(this)}/>
-          :
-          <img
-            className={noPlayerImgClass}
-            src={noVideoImgSrc}
-            alt={noVideoImgAlt} />}
-
-        {this.state.playerError ?
-          <p> {this.state.errorMsg} </p>
-          :
-          null
-        }
+        {playerPane}
+        {this.state.playerError ? <VideoPlayerError errorCode={this.state.errorCode} /> : null}
 
         <VideoPlayerSettings
           onChangeCfg={this.handleChangeCfg.bind(this)}/>

@@ -34,6 +34,10 @@ export default class VideoPlayerViewer extends React.Component {
         videoId: "none",
         height: this.props.defaultHeight,
         width: this.props.defaultWidth,
+        playerVars: {
+          rel: 0,
+          modestbranding: 1
+        },
         events: {
           'onReady': this.onPlayerReady.bind(this),
           'onStateChange': this.onPlayerStateChange.bind(this),
@@ -95,18 +99,15 @@ export default class VideoPlayerViewer extends React.Component {
   }
 
   onPlayerError(event) {
-    //TODO: implement
     console.log("Player error: " + event.data)
 
-    this.props.onError(event.data);
+    this.props.onError(event.data, this.player);
+
   }
 
   render() {
     return (
-      <div
-        className={this.props.className}
-        id={iframeId}>
-      </div>
+      <div id={iframeId}> </div>
     )
   }
 }
