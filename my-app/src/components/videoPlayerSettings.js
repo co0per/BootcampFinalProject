@@ -23,7 +23,6 @@ export class VideoPlayerSettings extends React.Component {
 
   render() {
 
-    /* TODO: Insert config elements. */
     return (
       <div className={settingAreaClass}>
 
