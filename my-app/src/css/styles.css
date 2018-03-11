@@ -18,3 +18,32 @@ h3 {
     border-bottom: 2px solid black;
     margin-bottom: 20px;
 }
+
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+ul {
+    list-style: none;
+    width: 60%;
+    margin-left: 20%;
+    overflow-y: scroll;
+    height:640px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.animated {
+    padding: 10px;
+    overflow: auto;
+    animation: 1s ease-in-out 0s 1 slideInFromLeft;
+}
