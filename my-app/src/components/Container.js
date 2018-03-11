@@ -4,9 +4,6 @@ import VideoList from './videoList'
 import VideoArea from './videoArea.js'
 import '../css/styles.css'
 
-//Constants:
-const appBodyClass = "app-body";
-
 class Container extends React.Component {
 
     constructor(props) {
@@ -35,7 +32,7 @@ class Container extends React.Component {
 
     render() {
         return (
-            <div className={appBodyClass}>
+            <div>
                 <Input onChange={videos => this.handleSearch(videos)}/>
                 <VideoList videos={this.state.videos}
                            onClick={video => this.handleClick(video)}

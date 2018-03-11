@@ -72,7 +72,7 @@ class Input extends React.Component {
     render() {
         return (
             <label>
-                <span>Search:</span>
+                <span className="syncopate forInput">Search:</span>
                 <DebounceInput
                     placeholder="Example: The Call of Ktulu"
                     className="input-field"

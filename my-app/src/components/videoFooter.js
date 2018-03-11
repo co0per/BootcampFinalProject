@@ -4,7 +4,6 @@ Video footer renders playing video title, description and other data
 
 import React from 'react'
 
-const videoFooterClass = "video-footer";
 
 
 export default class VideoFooter extends React.Component {
@@ -12,11 +11,11 @@ export default class VideoFooter extends React.Component {
   render() {
     const video = this.props.video;
     return (
-      <article className={videoFooterClass}>
+      <article>
         <header>
             {
                 video
-                    ?  <h3>  {video.title} </h3>
+                    ?  <h3>{video.title}</h3>
                     :  null
             }
         </header>
