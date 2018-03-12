@@ -83,6 +83,10 @@ class Input extends React.Component {
                     value={this.state.searchString}
                     onChange={this.handleInputChange}
                 />
+                <label className="fav-button"
+                  onClick={this.props.onClick} >
+                  favorites
+                </label>
             </header>
         )
     }
