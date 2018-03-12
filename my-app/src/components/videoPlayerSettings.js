@@ -22,7 +22,7 @@ export class VideoPlayerSettings extends React.Component {
   }
 
   render() {
-
+    const video = this.props.video;
     return (
       <div className={settingAreaClass}>
 
@@ -50,11 +50,11 @@ export class VideoPlayerSettings extends React.Component {
         </input>
 
         <button
-          onClick={this.props.onClick} >
+          onClick={() => this.props.onClick(video)}>
           ADD TO FAVORITES
         </button>
 
       </div>
-    )
+    );
   }
 }

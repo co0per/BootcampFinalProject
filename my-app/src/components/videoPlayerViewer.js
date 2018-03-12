@@ -107,12 +107,11 @@ export default class VideoPlayerViewer extends React.Component {
   }
 
   render() {
-
     return (
       <div
         id={iframeId}
         className={playerViewerClass}>
       </div>
-    )
+    );
   }
 }
