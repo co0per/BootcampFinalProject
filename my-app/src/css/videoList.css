@@ -1,11 +1,18 @@
 div.vidlist {
-	  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
-  width: -ms-calc(50% - 16px);
-  width: -moz-calc(50% - 16px);
-  width: -webkit-calc(50% - 16px);
-  width: calc(50% - 16px);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+  width: -ms-calc(50% - 60px);
+  width: -moz-calc(50% - 60px);
+  width: -webkit-calc(50% - 60px);
+  width: calc(50% - 60px);
   margin: 8px;
   height: auto;
   position: relative;
   float: right;
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+    overflow-y: scroll;
+    height:640px;
 }

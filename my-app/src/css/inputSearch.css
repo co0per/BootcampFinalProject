@@ -31,7 +31,7 @@ header.top-header {
     margin-left: 5px;
 }
 
-.fav-button {
+label.fav-button {
     float: right;
     font-size: 30px;
     color: white;
