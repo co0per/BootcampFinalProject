@@ -6,10 +6,9 @@ import React from 'react'
 
 
 
-export default class VideoFooter extends React.Component {
+export default function VideoFooter (props) {
 
-  render() {
-    const video = this.props.video;
+    const video = props.video;
     return (
       <article>
         <header>
@@ -21,6 +20,5 @@ export default class VideoFooter extends React.Component {
         </header>
         <p> {video ? video.description : null} </p>
       </article>
-    )
-  }
+    );
 }
