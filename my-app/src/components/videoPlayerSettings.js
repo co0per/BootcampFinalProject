@@ -4,7 +4,7 @@ TODO: Implement for settings like loop play...
 *****************************************************************************/
 
 import React from 'react'
-
+import '../css/videoPlayerSettings.css'
 const settingAreaClass = "settings-area";
 const repeatCheckboxId = "repeat-checkbox";
 const autoplayCheckboxId = "autoplay-checkbox";
@@ -49,9 +49,9 @@ export class VideoPlayerSettings extends React.Component {
           onChange={() => {this.repeatToggled()}} >
         </input>
 
-        <button
+        <button className="fav-button"
           onClick={this.props.onClick} >
-          ADD TO FAVORITES
+          add to favorites
         </button>
 
       </div>
