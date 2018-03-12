@@ -11,12 +11,13 @@ const videoAreaClass = "vidArea"
 
 function VideoArea (props) {
 
-
     return (
       <section className={videoAreaClass}>
 
         <VideoPlayer
-          video={props.video} />
+          video={props.video}
+          storage={props.storage}
+          onClick={props.onClick} />
 
         <VideoFooter
           video={props.video} />
