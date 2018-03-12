@@ -2,14 +2,14 @@
 Video viewer players renders both the viewer and the settings area.
 *****************************************************************************/
 
-import React from 'react'
-import VideoPlayerViewer from './videoPlayerViewer.js'
+import React from 'react';
+import VideoPlayerViewer from './videoPlayerViewer.js';
 import {
   VideoPlayerSettings,
   repeat,
   autoplay
-} from './videoPlayerSettings.js'
-import VideoPlayerErrorPane from './videoPlayerErrorPane.js'
+} from './videoPlayerSettings.js';
+import VideoPlayerErrorPane from './videoPlayerErrorPane.js';
 
 const videoViewerWidth = "100%";
 const videoViewerHeight = "360px";
@@ -19,10 +19,11 @@ const noPlayerImgClass = "no-video-img";
 const noVideoImgSrc = "img/no_video.jpg";
 const noVideoImgAlt = "No video has been loaded";
 
+
 export default class VideoPlayer extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       playerError: false,
@@ -54,10 +55,12 @@ export default class VideoPlayer extends React.Component {
   are received. Thats what we do here when a new video is received the error
   state is reset*/
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      playerError: false,
-      playerErrorCode: null
-    })
+    if(!this.props.video || !nextProps.video || this.props.video.id !== nextProps.video.id) {
+      this.setState({
+        playerError: false,
+        playerErrorCode: null
+      })
+    }
   }
 
   handleError(errCode) {
@@ -97,7 +100,8 @@ export default class VideoPlayer extends React.Component {
         </div>
 
         <VideoPlayerSettings
-          onChangeCfg={this.handleChangeCfg.bind(this)}/>
+          onChangeCfg={this.handleChangeCfg.bind(this)}
+          onClick={this.props.onClick}/>
 
       </div>
     )
