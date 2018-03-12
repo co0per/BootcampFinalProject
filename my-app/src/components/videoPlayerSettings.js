@@ -49,6 +49,11 @@ export class VideoPlayerSettings extends React.Component {
           onChange={() => {this.repeatToggled()}} >
         </input>
 
+        <button
+          onClick={this.props.onClick} >
+          ADD TO FAVORITES
+        </button>
+
       </div>
     )
   }
