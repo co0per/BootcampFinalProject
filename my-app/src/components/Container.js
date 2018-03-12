@@ -2,6 +2,7 @@ import React from 'react';
 import Input from './inputSearch';
 import VideoList from './videoList';
 import VideoArea from './videoArea.js';
+import {storageGetVideos, storageInsertVideo} from '../lib/storage_utils.js';
 import '../css/styles.css';
 
 class Container extends React.Component {
@@ -20,7 +21,8 @@ class Container extends React.Component {
     }
 
     componentDidMount() {
-        const favorites = (JSON.parse(localStorage.getItem('videos')));
+        const favorites = storageGetVideos();
+        console.log(favorites);
         if(favorites) {
             this.setState({
                 favorites: favorites
@@ -41,7 +43,7 @@ class Container extends React.Component {
     }
 
     handleViewFavorites() {
-        if(this.state.favorites.length > 0) {
+        if(this.state.favorites) {
                 const favorites = this.state.favorites;
                 this.setState({
                 videos: favorites
@@ -50,13 +52,12 @@ class Container extends React.Component {
     }
 
     handleAddFavoritesClick(video) {
-      let favorites = this.state.favorites;
-      favorites = favorites.concat(video);
       if(this.state.particularVideo) {
+        storageInsertVideo(video);
+        const favorites = storageGetVideos();
         this.setState({
             favorites: favorites
         });
-        localStorage.setItem('videos', JSON.stringify(favorites));
       }
     }
 

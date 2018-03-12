@@ -101,6 +101,8 @@ export default class VideoPlayer extends React.Component {
 
         <VideoPlayerSettings
           video={video}
+          autoplay={this.state.autoplay}
+          loopplay={this.state.loopplay}
           onChangeCfg={this.handleChangeCfg.bind(this)}
           onClick={() => this.props.onClick(video)}
         />

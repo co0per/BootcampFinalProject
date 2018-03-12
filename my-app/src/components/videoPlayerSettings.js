@@ -26,33 +26,29 @@ export class VideoPlayerSettings extends React.Component {
     return (
       <div className={settingAreaClass}>
 
-        <label
-          htmlFor={autoplayCheckboxId}>
-          Autoplay
-        </label>
+        <p
+          className={this.props.autoplay ? "active" : null}
+          onClick={() => {this.autoplayToggled()}} >
+          AUTOPLAY
+        </p>
 
-        <input
-          id={autoplayCheckboxId}
-          type="checkbox"
-          defaultChecked="true"
-          onChange={() => {this.autoplayToggled()}} >
-        </input>
+        <p
+          className={this.props.loopplay ? "active" : null}
+          onClick={() => {this.repeatToggled()}} >
+          REPEAT
+        </p>
 
-        <label
-          htmlFor={repeatCheckboxId}>
-          Repeat on finish
-        </label>
-
-        <input
-          id={repeatCheckboxId}
-          type="checkbox"
-          onChange={() => {this.repeatToggled()}} >
-        </input>
-
-        <button
-          onClick={() => this.props.onClick(video)}>
-          ADD TO FAVORITES
-        </button>
+        {localStorage ?
+          [<button
+            onClick={() => this.props.onClick(video)}>
+            ADD F
+          </button>,
+          <button
+            onClick={() => this.props.onClick(video)}>
+            DEL F
+          </button>]
+          : null
+        }
 
       </div>
     );
