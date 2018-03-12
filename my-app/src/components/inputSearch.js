@@ -1,6 +1,7 @@
 import React from 'react'
 import {DebounceInput} from 'react-debounce-input'
 import axios from 'axios'
+import '../css/inputSearch.css'
 
 const API = 'AIzaSyAOYG1Ai4mZy6L-ifZgQ8bzS87vA6v3JdA'
 const result = 20;
@@ -71,10 +72,10 @@ class Input extends React.Component {
 
     render() {
         return (
-            <label>
-                <span className="syncopate forInput">Search:</span>
+            <header className="top-header">
+                <span className="title">videopathy</span>
                 <DebounceInput
-                    placeholder="Example: The Call of Ktulu"
+                    placeholder="Search videos - e.g. The Call of Ktulu"
                     className="input-field"
                     name="search"
                     type="text"
@@ -82,11 +83,11 @@ class Input extends React.Component {
                     value={this.state.searchString}
                     onChange={this.handleInputChange}
                 />
-                <button
+                <label className="fav-button"
                   onClick={this.props.onClick} >
-                  VIEW FAVORITES
-                </button>
-            </label>
+                  favorites
+                </label>
+            </header>
         )
     }
 }

@@ -1,0 +1,46 @@
+header.top-header {
+	background: #444444;
+	margin-top: -8px;
+	margin-left: -8px;
+	width: 101.2%;
+	height: 50px;
+}
+
+.input-field{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding-left: 7px;
+    margin-left: 10px;
+    margin-top: 9px;
+    width: 315px;
+    height: 33px;
+    outline: none;
+    position: absolute;
+    font-size: 18px;
+}
+
+.title {
+    font-family: 'Bahiana';
+    color: white;
+    font-size: 45px;
+    margin-left: 5px;
+}
+
+.fav-button {
+    float: right;
+    font-size: 30px;
+    color: white;
+    font-family: 'Bahiana';
+    padding-top: 8px;
+    padding-right: 10px;
+}
+
+.fav-button:hover {
+    color: #00ffa5;
+    cursor:pointer;
+}
