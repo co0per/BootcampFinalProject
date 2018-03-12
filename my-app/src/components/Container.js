@@ -3,27 +3,29 @@ import Input from './inputSearch';
 import VideoList from './videoList';
 import VideoArea from './videoArea.js';
 import '../css/styles.css';
-import Storage from '../lib/local_storage.js';
 
 class Container extends React.Component {
 
     constructor(props) {
         super(props);
 
-        //Initializes storage.
-        this.storage = new Storage();
-        const favorites = this.storage.localStorageGetAll();
-
         this.state = {
             videos: [],
             particularVideo: null,
-
-            //Adds favourites to container state
-            favorites: favorites
+            favorites: []
         };
 
         this.handleSearch = this.handleSearch.bind(this);
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount() {
+        const favorites = (JSON.parse(localStorage.getItem('videos')));
+        if(favorites) {
+            this.setState({
+                favorites: favorites
+            });
+        }
     }
 
     handleSearch(videos) {
@@ -38,15 +40,23 @@ class Container extends React.Component {
         });
     }
 
-    handleFavoritesClick() {
-        this.setState({
-            videos: this.state.favorites
-        })
+    handleViewFavorites() {
+        if(this.state.favorites.length > 0) {
+                const favorites = this.state.favorites;
+                this.setState({
+                videos: favorites
+            });
+        }
     }
 
-    handleAddFavoritesClick() {
+    handleAddFavoritesClick(video) {
+      let favorites = this.state.favorites;
+      favorites = favorites.concat(video);
       if(this.state.particularVideo) {
-        this.storage.localStorageInsert(this.state.particularVideo.id, this.state.particularVideo);
+        this.setState({
+            favorites: favorites
+        });
+        localStorage.setItem('videos', JSON.stringify(favorites));
       }
     }
 
@@ -54,14 +64,14 @@ class Container extends React.Component {
         return (
             <div>
                 <Input onChange={videos => this.handleSearch(videos)}
-                       onClick={() => this.handleFavoritesClick()}/>
+                       onClick={(video) => this.handleViewFavorites()}/>
                 <VideoList videos={this.state.videos}
                            onClick={video => this.handleClick(video)}
                 />
                 <VideoArea
                     video={this.state.particularVideo}
                     storage={this.storage}
-                    onClick={() => this.handleAddFavoritesClick()}
+                    onClick={video => this.handleAddFavoritesClick(video)}
                 />
             </div>
         );
