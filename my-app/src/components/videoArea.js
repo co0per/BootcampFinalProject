@@ -9,19 +9,20 @@ import '../css/videoArea.css';
 
 const videoAreaClass = "vidArea"
 
-export default class VideoArea extends React.Component {
+function VideoArea (props) {
 
-  render() {
+
     return (
       <section className={videoAreaClass}>
 
         <VideoPlayer
-          video={this.props.video} />
+          video={props.video} />
 
         <VideoFooter
-          video={this.props.video} />
+          video={props.video} />
 
       </section>
-    )
-  }
+    );
 }
+
+export default VideoArea;
