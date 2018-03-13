@@ -3,6 +3,7 @@ Video footer renders playing video title, description and other data
 *****************************************************************************/
 
 import React from 'react'
+import '../css/videoFooter.css'
 
 export default function VideoFooter (props) {
 
@@ -12,7 +13,7 @@ export default function VideoFooter (props) {
         <header>
             {
                 video
-                    ?  <h3>{video.title}</h3>
+                    ?  <h3 className="video-title">{video.title}</h3>
                     :  null
             }
         </header>

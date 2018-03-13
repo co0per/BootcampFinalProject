@@ -10,7 +10,7 @@ p.fav-button {
 }
 
 p.fav-button.active {
-  color:lightgreen;
+  color:white;
   text-shadow:3px 3px 0px black;
 }
 
@@ -36,7 +36,7 @@ p.fav-button:hover {
 }
 
 .player-option.active {
-  color:lightgreen;
+  color:white;
   text-shadow:3px 3px 0px black;
   cursor:pointer;
 }
