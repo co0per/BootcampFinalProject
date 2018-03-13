@@ -81,10 +81,10 @@ export class VideoPlayerSettings extends React.Component {
           onChange={() => {this.repeatToggled()}} >
         </input>
 
-        <button className="fav-button"
+        <label className="fav-button"
           onClick={() => this.props.onClick(video)} >
-          add to favorites
-        </button>
+          favorite
+        </label>
 
       </div>
     );

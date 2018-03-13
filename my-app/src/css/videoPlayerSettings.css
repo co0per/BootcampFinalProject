@@ -1,19 +1,12 @@
-button.fav-button{
-    border: 1px solid #C2C2C2;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    width: 150px;
-    height: 33px;
-    font-size: 18px;
+label.fav-button{
+    font-size: 28px;
     color: white;
-    background: #444444;
+    font-family: 'Barrio';
+    padding-top: 0px;
 }
 
-button.fav-button:hover {
-	color: black;
-	background: #00ffa5;
-	border: 2px solid black;
+label.fav-button:hover {
+	color: #00ffa5 !important;
 }
 
 .invisible-cb {
