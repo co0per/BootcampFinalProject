@@ -103,8 +103,9 @@ export default class VideoPlayer extends React.Component {
           video={video}
           autoplay={this.state.autoplay}
           loopplay={this.state.loopplay}
+          isFavorite={this.props.isFavorite}
           onChangeCfg={this.handleChangeCfg.bind(this)}
-          onClick={() => this.props.onClick(video)}
+          onFavoriteClick={this.props.onClick}
         />
       </div>
     )

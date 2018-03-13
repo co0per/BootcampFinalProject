@@ -11,6 +11,26 @@ export class Video {
     this.imgAlt = imgAlt;
   }
 
+  //Returns true if an instance of Video has the same id.
+  equals(video) {
+    if(video && video instanceof Video && video.id === this.id) {
+      return true;
+    }
+    return false;
+  }
+
+  //Returns true if this video has an equal video in a Videos array
+  in(videos) {
+    if(Array.isArray(videos)) {
+      for(let video of videos) {
+        if(this.equals(video)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
 }
 
 export function initYouTubeAPI() {

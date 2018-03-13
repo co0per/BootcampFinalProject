@@ -1,13 +1,12 @@
 /*****************************************************************************
 Video viewer renders Iframe component that allows viewing videos.
-TODO: Implement for settings like loop play...
 *****************************************************************************/
 
 import React from 'react'
 
 const settingAreaClass = "settings-area";
-const repeatCheckboxId = "repeat-checkbox";
-const autoplayCheckboxId = "autoplay-checkbox";
+export const remove = "remove";
+export const add = "add"
 export const repeat = "repeat";
 export const autoplay = "autoplay";
 
@@ -19,6 +18,26 @@ export class VideoPlayerSettings extends React.Component {
 
   autoplayToggled() {
     this.props.onChangeCfg(autoplay);
+  }
+
+  handleAddFavClick(video) {
+    if(!this.props.isFavorite) {
+
+      //This line was added for debugging, comment if not necessary
+      console.log("ADD!");
+
+      this.props.onFavoriteClick(video, add);
+    }
+  }
+
+  handleRemoveFavClick(video) {
+    if(this.props.isFavorite) {
+
+      //This line was added for debugging, comment if not necessary
+      console.log("REMOVE!");
+
+      this.props.onFavoriteClick(video, remove);
+    }
   }
 
   render() {
@@ -39,15 +58,16 @@ export class VideoPlayerSettings extends React.Component {
         </p>
 
         {localStorage ?
-          [<button
-            onClick={() => this.props.onClick(video)}>
-            ADD F
-          </button>,
           <button
-            onClick={() => this.props.onClick(video)}>
+            onClick={() => this.handleAddFavClick(video)}>
+            ADD F
+          </button> : null}
+
+        {localStorage ?
+          <button
+            onClick={() => this.handleRemoveFavClick(video)}>
             DEL F
-          </button>]
-          : null
+          </button> : null
         }
 
       </div>

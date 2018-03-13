@@ -2,8 +2,12 @@ import React from 'react';
 import Input from './inputSearch';
 import VideoList from './videoList';
 import VideoArea from './videoArea.js';
-import {storageGetVideos, storageInsertVideo} from '../lib/storage_utils.js';
+import {
+  storageGetVideos,
+  storageInsertVideo,
+  storageDeleteVideo} from '../lib/storage_utils.js';
 import '../css/styles.css';
+import {add, remove} from './videoPlayerSettings.js'
 
 class Container extends React.Component {
 
@@ -13,7 +17,8 @@ class Container extends React.Component {
         this.state = {
             videos: [],
             particularVideo: null,
-            favorites: []
+            favorites: [],
+            favoritesView: false
         };
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -22,7 +27,6 @@ class Container extends React.Component {
 
     componentDidMount() {
         const favorites = storageGetVideos();
-        console.log(favorites);
         if(favorites) {
             this.setState({
                 favorites: favorites
@@ -32,7 +36,8 @@ class Container extends React.Component {
 
     handleSearch(videos) {
         this.setState({
-            videos: videos
+            videos: videos,
+            favoritesView: false
         });
     }
 
@@ -44,21 +49,36 @@ class Container extends React.Component {
 
     handleViewFavorites() {
         if(this.state.favorites) {
-                const favorites = this.state.favorites;
-                this.setState({
-                videos: favorites
-            });
+          this.setState({
+            favoritesView: true
+          });
         }
     }
 
-    handleAddFavoritesClick(video) {
-      if(this.state.particularVideo) {
-        storageInsertVideo(video);
-        const favorites = storageGetVideos();
-        this.setState({
-            favorites: favorites
-        });
+    handleFavoritesClick(video, action) {
+      let favorites;
+      switch(action) {
+          case add:
+            if(this.state.particularVideo) {
+              storageInsertVideo(video);
+              favorites = storageGetVideos();
+              this.setState({
+                favorites: favorites
+              });
+            }
+            break;
+          case remove:
+            storageDeleteVideo(video);
+            favorites = storageGetVideos();
+            this.setState({
+              favorites: favorites
+            })
+            break;
+          default:
+            break;
+
       }
+
     }
 
     render() {
@@ -66,13 +86,14 @@ class Container extends React.Component {
             <div>
                 <Input onChange={videos => this.handleSearch(videos)}
                        onClick={(video) => this.handleViewFavorites()}/>
-                <VideoList videos={this.state.videos}
+                <VideoList videos={this.state.favoritesView ? this.state.favorites :this.state.videos}
                            onClick={video => this.handleClick(video)}
                 />
                 <VideoArea
                     video={this.state.particularVideo}
-                    storage={this.storage}
-                    onClick={video => this.handleAddFavoritesClick(video)}
+                    isFavorite={this.state.particularVideo ?
+                      this.state.particularVideo.in(this.state.favorites) : false}
+                    onClick={(video, action) => this.handleFavoritesClick(video, action)}
                 />
             </div>
         );
