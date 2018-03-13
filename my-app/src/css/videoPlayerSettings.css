@@ -15,3 +15,26 @@ button.fav-button:hover {
 	background: #00ffa5;
 	border: 2px solid black;
 }
+
+.invisible-cb {
+	display: none;
+}
+
+.player-option {
+	font-family: 'Barrio';
+	font-size: 28px;
+	cursor:pointer;
+}
+
+.settings-area {
+	background: #444444;
+	color: lightgrey;
+}
+
+.player-option:hover {
+	color: #00ffa5 !important;
+}
+
+.player-option:active {
+	text-shadow: 3px 3px 0px black;
+}

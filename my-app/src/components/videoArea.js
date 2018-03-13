@@ -17,7 +17,8 @@ function VideoArea (props) {
         <VideoPlayer
           video={props.video}
           storage={props.storage}
-          onClick={props.onClick} />
+          onClick={() => props.onClick(props.video)}
+        />
 
         <VideoFooter
           video={props.video} />

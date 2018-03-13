@@ -44,3 +44,7 @@ label.fav-button {
     color: #00ffa5;
     cursor:pointer;
 }
+
+.fav-button:active {
+    text-shadow: 3px 3px 0px black;
+}

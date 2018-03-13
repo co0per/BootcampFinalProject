@@ -71,7 +71,7 @@ export default class VideoPlayer extends React.Component {
   }
 
   render() {
-
+    const video = this.props.video;
     /*If an error is detected on the player an error pane will be displayed on
     top of the player, if no video is loaded a no video img will be displayed*/
     return (
@@ -100,9 +100,10 @@ export default class VideoPlayer extends React.Component {
         </div>
 
         <VideoPlayerSettings
+          video={video}
           onChangeCfg={this.handleChangeCfg.bind(this)}
-          onClick={this.props.onClick}/>
-
+          onClick={() => this.props.onClick(video)}
+        />
       </div>
     )
   }
