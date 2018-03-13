@@ -1,12 +1,22 @@
-label.fav-button{
-    font-size: 28px;
-    color: white;
-    font-family: 'Barrio';
-    padding-top: 0px;
+p.fav-button {
+  font-size: 28px;
+  color: lightgrey;
+  width: 9em;
+  text-align: center;
+  font-family: 'Barrio';
+  padding-top: 0px;
+  margin-top: 10px;
+  margin-bottom:10px;
 }
 
-label.fav-button:hover {
+p.fav-button.active {
+  color:lightgreen;
+  text-shadow:3px 3px 0px black;
+}
+
+p.fav-button:hover {
 	color: #00ffa5 !important;
+  cursor:pointer;
 }
 
 .invisible-cb {
@@ -16,7 +26,19 @@ label.fav-button:hover {
 .player-option {
 	font-family: 'Barrio';
 	font-size: 28px;
+  width: 9em;
+  text-align: center;
 	cursor:pointer;
+  color:lightgrey;
+  text-shadow:0px 0px 0px black;
+  margin-top: 10px;
+  margin-bottom:10px;
+}
+
+.player-option.active {
+  color:lightgreen;
+  text-shadow:3px 3px 0px black;
+  cursor:pointer;
 }
 
 .settings-area {
