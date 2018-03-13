@@ -83,7 +83,7 @@ class Input extends React.Component {
                     value={this.state.searchString}
                     onChange={this.handleInputChange}
                 />
-                <label className="fav-button"
+                <label className="fav-button-list"
                   onClick={this.props.onClick} >
                   favorites
                 </label>

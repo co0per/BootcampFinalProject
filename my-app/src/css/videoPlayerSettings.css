@@ -1,0 +1,33 @@
+label.fav-button{
+    font-size: 28px;
+    color: white;
+    font-family: 'Barrio';
+    padding-top: 0px;
+}
+
+label.fav-button:hover {
+	color: #00ffa5 !important;
+}
+
+.invisible-cb {
+	display: none;
+}
+
+.player-option {
+	font-family: 'Barrio';
+	font-size: 28px;
+	cursor:pointer;
+}
+
+.settings-area {
+	background: #444444;
+	color: lightgrey;
+}
+
+.player-option:hover {
+	color: #00ffa5 !important;
+}
+
+.player-option:active {
+	text-shadow: 2px 1px 0px white !important;
+}
