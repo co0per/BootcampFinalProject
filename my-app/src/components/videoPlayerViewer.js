@@ -42,9 +42,6 @@ export default class VideoPlayerViewer extends React.Component {
     if(this.props.video) {
       this.player.clearVideo();
       this.player.cueVideoById(this.props.video.id);
-      if(this.props.autoplay) {
-        this.player.playVideo();
-      }
     }
   }
 
@@ -64,14 +61,13 @@ export default class VideoPlayerViewer extends React.Component {
     //This line is used for debugging purpose. Commit if not necessary.
     console.log("Player Ready...");
 
+    this.props.onReady();
+
     /*If a video was passed the video will be loaded in the player and played if
     autoplay is enabled*/
     if(this.props.video) {
       this.player.clearVideo();
       this.player.cueVideoById(this.props.video.id)
-      if(this.props.autoplay) {
-        this.player.playVideo();
-      }
     }
 
   }
@@ -84,6 +80,11 @@ export default class VideoPlayerViewer extends React.Component {
 
     //This switch allows to add more custom behaviour to the player.
     switch(event.data){
+      case -1:
+        if(this.props.autoplay) {
+          this.player.playVideo();
+        }
+        break;
       case 0:
         if(this.props.loopplay) {
           event.target.playVideo();
