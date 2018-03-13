@@ -29,5 +29,5 @@ label.fav-button:hover {
 }
 
 .player-option:active {
-	text-shadow: 3px 3px 0px black;
+	text-shadow: 2px 1px 0px white !important;
 }
