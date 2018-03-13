@@ -29,7 +29,8 @@ export default class VideoPlayer extends React.Component {
       playerError: false,
       playerErrorCode: null,
       autoplay: true,
-      loopplay: false
+      loopplay: false,
+      playerReady: false
     }
   }
 
@@ -70,6 +71,15 @@ export default class VideoPlayer extends React.Component {
     })
   }
 
+  /*handleReady fixes a bug that happens if you are quick enough to request
+  playing a video before the player is ready. Player rendering is delayed
+  until the player is ready (no video is passed until then)*/
+  handleReady() {
+    this.setState({
+      playerReady: true
+    })
+  }
+
   render() {
     const video = this.props.video;
     /*If an error is detected on the player an error pane will be displayed on
@@ -80,12 +90,13 @@ export default class VideoPlayer extends React.Component {
         <div className={iframeWrapperClass}>
 
           <VideoPlayerViewer
-            video={this.props.video}
+            video={this.state.playerReady ? this.props.video : null}
             autoplay={this.state.autoplay}
             loopplay={this.state.loopplay}
             defaultHeight={videoViewerHeight}
             defaultWidth={videoViewerWidth}
-            onError={this.handleError.bind(this)}/>
+            onError={this.handleError.bind(this)}
+            onReady={this.handleReady.bind(this)}/>
 
           {!this.props.video ?
             <img
