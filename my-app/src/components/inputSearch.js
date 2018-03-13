@@ -18,6 +18,11 @@ class Input extends React.Component {
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
+
+    handleKeyUp(e) {
+        e.preventDefault();
     }
 
     handleInputChange(e) {
@@ -37,17 +42,20 @@ class Input extends React.Component {
                 .then((response) => {
                     const result = response.data.items.map((item) => {
                         if(item.snippet.thumbnails) {
-                            return new Video(item.id.videoId,
-                                             item.snippet.title,
-                                             item.snippet.description,
-                                             item.snippet.thumbnails.default.url,
-                                             item.snippet.title)
+                            return new Video (
+                                item.id.videoId,
+                                item.snippet.title,
+                                item.snippet.description,
+                                item.snippet.thumbnails.default.url,
+                                item.snippet.title)
                         } else {
-                            return new Video(item.id.videoId,
-                                             item.snippet.title,
-                                             item.snippet.description,
-                                             'https://s3.ap-south-1.amazonaws.com/iquppo-image-upload/assets/uploads/1514528162892/IQ_SK_KNR_198-05.png',
-                                             item.snippet.title)
+                            return new Video(
+                                item.id.videoId,
+                                item.snippet.title,
+                                item.snippet.description,
+                                'https://s3.ap-south-1.amazonaws.com/iquppo-image-upload/assets/uploads/1514528162892/IQ_SK_KNR_198-05.png',
+                                item.snippet.title
+                            )
                         }
                     });
                     const filteredResult = result.filter((video) => {
@@ -81,6 +89,7 @@ class Input extends React.Component {
                     debounceTimeout={1200}
                     value={this.state.searchString}
                     onChange={this.handleInputChange}
+                    onKeyUp={this.handleKeyUp}
                 />
                 {localStorage ?
                   <label className="fav-button-list"
