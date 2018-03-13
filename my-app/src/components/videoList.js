@@ -7,15 +7,16 @@ function VideoList(props) {
 
     if(videos) {
         videos = videos.map((video) => {
-            return  <li key={video.id} 
+            return  <li key={video.id}
                         className="animated"
                         onClick = {() => props.onClick(video)}>
                         <img src = {video.img}
+                             alt = {video.imgAlt}
                              className="video-li"/>
                         <div className="vid-name-li">
                             <p className="video-li">{video.title}</p>    
                         </div>
-                        
+
                    </li>
         });
     }
@@ -23,13 +24,13 @@ function VideoList(props) {
     return (
         <div className="vidlist">
             {
-                videos.length > 0 
+                videos.length > 0
                     ?   <ul>
                             {videos}
                         </ul>
-                    :   null
+                    :   <p> No videos to show </p>
             }
-            
+
         </div>
     );
 }
