@@ -83,7 +83,7 @@ class Input extends React.Component {
                     onChange={this.handleInputChange}
                 />
                 {localStorage ?
-                  <label className="fav-button"
+                  <label className="fav-button-list"
                     onClick={this.props.onClick} >
                     favorites
                   </label> : null

@@ -7,11 +7,16 @@ function VideoList(props) {
 
     if(videos) {
         videos = videos.map((video) => {
-            return <li key={video.id} className="animated">
+            return  <li key={video.id}
+                        className="animated"
+                        onClick = {() => props.onClick(video)}>
                         <img src = {video.img}
                              alt = {video.imgAlt}
-                             onClick = {() => props.onClick(video)}/>
-                        {video.title}
+                             className="video-li"/>
+                        <div className="vid-name-li">
+                            <p className="video-li">{video.title}</p>    
+                        </div>
+
                    </li>
         });
     }

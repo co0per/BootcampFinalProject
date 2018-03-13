@@ -3,7 +3,7 @@ Video viewer renders Iframe component that allows viewing videos.
 *****************************************************************************/
 
 import React from 'react'
-
+import '../css/videoPlayerSettings.css'
 const settingAreaClass = "settings-area";
 export const remove = "remove";
 export const add = "add"
@@ -12,12 +12,30 @@ export const autoplay = "autoplay";
 
 export class VideoPlayerSettings extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      active_fav: false,
+      active_rep: false
+    };
+  }
+
   repeatToggled() {
     this.props.onChangeCfg(repeat);
+    if(this.state.active_rep){
+      this.setState({ active_rep: false });
+    } else {
+      this.setState({ active_rep: true });
+    }
   }
 
   autoplayToggled() {
     this.props.onChangeCfg(autoplay);
+    if(this.state.active_fav){
+      this.setState({ active_fav: false });
+    } else {
+      this.setState({ active_fav: true });
+    }
   }
 
   handleAddFavClick(video) {
@@ -25,17 +43,11 @@ export class VideoPlayerSettings extends React.Component {
 
       //This line was added for debugging, comment if not necessary
       console.log("ADD!");
-
       this.props.onFavoriteClick(video, add);
-    }
-  }
-
-  handleRemoveFavClick(video) {
-    if(this.props.isFavorite) {
+    } else {
 
       //This line was added for debugging, comment if not necessary
       console.log("REMOVE!");
-
       this.props.onFavoriteClick(video, remove);
     }
   }
@@ -46,29 +58,23 @@ export class VideoPlayerSettings extends React.Component {
       <div className={settingAreaClass}>
 
         <p
-          className={this.props.autoplay ? "active" : null}
+          className={"player-option " + (this.props.autoplay ? "active" : "")}
           onClick={() => {this.autoplayToggled()}} >
           AUTOPLAY
         </p>
 
         <p
-          className={this.props.loopplay ? "active" : null}
+          className={"player-option " + (this.props.loopplay ? "active" : "")}
           onClick={() => {this.repeatToggled()}} >
           REPEAT
         </p>
 
         {localStorage ?
-          <button
+          <p
+            className={"fav-button " + (this.props.isFavorite ? "active" : "")}
             onClick={() => this.handleAddFavClick(video)}>
-            ADD F
-          </button> : null}
-
-        {localStorage ?
-          <button
-            onClick={() => this.handleRemoveFavClick(video)}>
-            DEL F
-          </button> : null
-        }
+            FAVORITE!
+          </p> : null}
 
       </div>
     );

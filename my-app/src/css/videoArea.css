@@ -1,8 +1,8 @@
 section.vid-area {
-  width: -ms-calc(55% - 46px);
-  width: -moz-calc(55% - 46px);
-  width: -webkit-calc(55% - 46px);
-  width: calc(55% - 46px);
+  width: -ms-calc(50% - 30px);
+  width: -moz-calc(50% - 30px);
+  width: -webkit-calc(50% - 30px);
+  width: calc(50% - 30px);
   margin-top: 20px;
   margin-left: 30px;
   height: auto;
@@ -45,17 +45,6 @@ section.vid-area {
 	border: 0.5px dotted white;
 }
 
-.settings-area p {
-  font-weight: bolder;
-  color: red;
-  width: 9em;
-  text-align: center;
-}
-
-.settings-area p.active {
-  color: green;
-}
-
 .video-footer {
 	padding: 10px 25px;
 	border: 0.5px dotted white;
@@ -64,11 +53,6 @@ section.vid-area {
 
 article h3 {
 	max-width: 100%;
-}
-
-.settings-area input,
-.settings-area label {
-	margin: 0 20px;
 }
 
 .no-video-img {
@@ -83,12 +67,4 @@ article h3 {
 	position: relative;
 	height: 360px;
 	width: 100%;
-}
-
-.visible {
-	display: block;
-}
-
-.not-visible {
-	display: none;
 }

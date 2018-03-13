@@ -31,7 +31,7 @@ header.top-header {
     margin-left: 5px;
 }
 
-.fav-button {
+label.fav-button-list {
     float: right;
     font-size: 30px;
     color: white;
@@ -40,7 +40,11 @@ header.top-header {
     padding-right: 10px;
 }
 
-.fav-button:hover {
+.fav-button-list:hover {
     color: #00ffa5;
     cursor:pointer;
+}
+
+.fav-button-list:active {
+    text-shadow: 3px 3px 0px black;
 }
