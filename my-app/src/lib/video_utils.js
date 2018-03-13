@@ -3,27 +3,33 @@ Defines video class & video utilities.
 *****************************************************************************/
 
 export class Video {
-  constructor(title, id, description, link, img) {
-    this._title = title;
-    this._id = id;
-    this._description = description;
-    this._link = link;
-    this._img = img;
+  constructor(id, title, description, img, imgAlt) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.img = img;
+    this.imgAlt = imgAlt;
   }
 
-  //Getters
-  get title () { return this._title; }
-  get id () { return this._id; }
-  get description () { return this._description; }
-  get link () { return this._link; }
-  get img () { return this._img; }
+  //Returns true if an instance of Video has the same id.
+  equals(video) {
+    if(video && video instanceof Video && video.id === this.id) {
+      return true;
+    }
+    return false;
+  }
 
-  //Setters
-  set title (title) { this._title = title; }
-  set id (id) { this._id = id; }
-  set description (description) { this._description = description; }
-  set link (link) { this._link = link; }
-  set img (img) { this.img = img; }
+  //Returns true if this video has an equal video in a Videos array
+  in(videos) {
+    if(Array.isArray(videos)) {
+      for(let video of videos) {
+        if(this.equals(video)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
 }
 

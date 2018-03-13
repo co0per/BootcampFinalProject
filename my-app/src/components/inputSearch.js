@@ -2,6 +2,7 @@ import React from 'react'
 import {DebounceInput} from 'react-debounce-input'
 import axios from 'axios'
 import '../css/inputSearch.css'
+import {Video} from '../lib/video_utils.js'
 
 const API = 'AIzaSyAOYG1Ai4mZy6L-ifZgQ8bzS87vA6v3JdA'
 const result = 20;
@@ -36,19 +37,17 @@ class Input extends React.Component {
                 .then((response) => {
                     const result = response.data.items.map((item) => {
                         if(item.snippet.thumbnails) {
-                            return {
-                                id: item.id.videoId,
-                                title: item.snippet.title,
-                                description: item.snippet.description,
-                                img: item.snippet.thumbnails.default.url
-                            }
+                            return new Video(item.id.videoId,
+                                             item.snippet.title,
+                                             item.snippet.description,
+                                             item.snippet.thumbnails.default.url,
+                                             item.snippet.title)
                         } else {
-                            return {
-                                id: item.id.videoId,
-                                title: item.snippet.title,
-                                description: item.snippet.description,
-                                img: 'https://s3.ap-south-1.amazonaws.com/iquppo-image-upload/assets/uploads/1514528162892/IQ_SK_KNR_198-05.png'
-                            }
+                            return new Video(item.id.videoId,
+                                             item.snippet.title,
+                                             item.snippet.description,
+                                             'https://s3.ap-south-1.amazonaws.com/iquppo-image-upload/assets/uploads/1514528162892/IQ_SK_KNR_198-05.png',
+                                             item.snippet.title)
                         }
                     });
                     const filteredResult = result.filter((video) => {
@@ -83,10 +82,12 @@ class Input extends React.Component {
                     value={this.state.searchString}
                     onChange={this.handleInputChange}
                 />
-                <label className="fav-button-list"
-                  onClick={this.props.onClick} >
-                  favorites
-                </label>
+                {localStorage ?
+                  <label className="fav-button-list"
+                    onClick={this.props.onClick} >
+                    favorites
+                  </label> : null
+                }
             </header>
         )
     }
