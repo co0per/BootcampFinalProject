@@ -9,7 +9,7 @@ export default function VideoFooter (props) {
 
     const video = props.video;
     return (
-      <article>
+      <article className="video-footer">
         <header>
             {
                 video

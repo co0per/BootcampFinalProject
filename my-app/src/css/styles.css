@@ -7,14 +7,6 @@ html {
     background: linear-gradient(to bottom, #00ffc3, #00ffa5);
 }
 
-h3 {
-    max-width: 40%;
-    padding-bottom: 15px;
-    border-bottom: 2px solid black;
-    margin-bottom: 20px;
-}
-
-
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);

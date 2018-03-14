@@ -88,6 +88,7 @@ class Container extends React.Component {
                        onClick={(video) => this.handleViewFavorites()}/>
                 <VideoList videos={this.state.favoritesView ? this.state.favorites :this.state.videos}
                            onClick={video => this.handleClick(video)}
+                           favOrRes={this.state.favoritesView}
                 />
                 <VideoArea
                     video={this.state.particularVideo}

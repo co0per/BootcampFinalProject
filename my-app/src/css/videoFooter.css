@@ -1,3 +1,5 @@
-h3.video-title {
+.video-footer{
 	font-family: 'Viga';
+	border-radius: 5px;
+	border: 0.5px dotted white;
 }
