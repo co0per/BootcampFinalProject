@@ -77,6 +77,20 @@ li.animated:hover {
 
 /* Media queries */
 
+@media screen and (max-width: 470px) {
+	
+	p.video-li {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 471px) and (max-width: 764px) {
+
+	p.video-li {
+		font-size: 22px;
+	}
+}
+
 @media screen and (max-width: 764px) {
 
 	div.vidlist {
@@ -90,9 +104,7 @@ li.animated:hover {
 	}
 
 	p.video-li {
-
 		margin-top: 5px;
-		font-size: 14px;
 		font-family: 'Viga';
 	}
 
