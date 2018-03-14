@@ -16,8 +16,7 @@ export class VideoPlayerSettings extends React.Component {
     super();
     this.state = {
       active_fav: false,
-      active_rep: false,
-      alert: false
+      active_rep: false
     };
   }
 
@@ -45,13 +44,11 @@ export class VideoPlayerSettings extends React.Component {
       //This line was added for debugging, comment if not necessary
       console.log("ADD!");
       this.props.onFavoriteClick(video, add);
-      this.setState({ alert: true});
     } else {
 
       //This line was added for debugging, comment if not necessary
       console.log("REMOVE!");
       this.props.onFavoriteClick(video, remove);
-      this.setState({ alert: false});
     }
   }
 
@@ -79,7 +76,6 @@ export class VideoPlayerSettings extends React.Component {
             FAVORITE
           </p> : null}
 
-        { this.state.alert ? <div className="alert">Video added to favorites</div>  : null }
       </div>
     );
   }

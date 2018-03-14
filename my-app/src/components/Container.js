@@ -18,7 +18,10 @@ class Container extends React.Component {
             videos: [],
             particularVideo: null,
             favorites: [],
-            favoritesView: false
+            favoritesView: false,
+            alertAdd: false,
+            alertDel: false,
+            alertTimeout: null
         };
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -60,19 +63,35 @@ class Container extends React.Component {
       switch(action) {
           case add:
             if(this.state.particularVideo) {
+              clearTimeout(this.state.alertTimeout);
               storageInsertVideo(video);
               favorites = storageGetVideos();
               this.setState({
-                favorites: favorites
+                favorites: favorites,
+                alertAdd: true,
+                alertDel: false,
+                alertTimeout: setTimeout(() => {
+                  this.setState({
+                    alertAdd: false
+                  })
+                }, 3000)
               });
             }
             break;
           case remove:
+            clearTimeout(this.state.alertTimeout);
             storageDeleteVideo(video);
             favorites = storageGetVideos();
             this.setState({
-              favorites: favorites
-            })
+              favorites: favorites,
+              alertAdd: false,
+              alertDel: true,
+              alertTimeout: setTimeout(() => {
+                this.setState({
+                  alertAdd: false
+                })
+              }, 3000)
+            });
             break;
           default:
             break;
@@ -86,16 +105,20 @@ class Container extends React.Component {
             <div>
                 <Input onChange={videos => this.handleSearch(videos)}
                        onClick={(video) => this.handleViewFavorites()}/>
+
+                <VideoArea video={this.state.particularVideo}
+                           isFavorite={this.state.particularVideo ?
+                             this.state.particularVideo.in(this.state.favorites) : false}
+                           onClick={(video, action) => this.handleFavoritesClick(video, action)}
+                />
+
                 <VideoList videos={this.state.favoritesView ? this.state.favorites :this.state.videos}
                            onClick={video => this.handleClick(video)}
                            favOrRes={this.state.favoritesView}
                 />
-                <VideoArea
-                    video={this.state.particularVideo}
-                    isFavorite={this.state.particularVideo ?
-                      this.state.particularVideo.in(this.state.favorites) : false}
-                    onClick={(video, action) => this.handleFavoritesClick(video, action)}
-                />
+
+                { this.state.alertAdd ? <div className="alert">Video added to favorites</div>  : null }
+                { this.state.alertDel ? <div className="alert">Video removed from favorites</div>  : null }
             </div>
         );
     }
