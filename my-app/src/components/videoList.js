@@ -14,7 +14,7 @@ function VideoList(props) {
                         <img src = {video.img}
                              alt = {video.imgAlt}
                              className="video-li"/>
-                        <div className="vid-name-li">
+                        <div className="vid-title-li">
                             <p className="video-li">{video.title}</p>    
                         </div>
 

@@ -15,13 +15,14 @@ ul {
     width: 95%;
     overflow-y: scroll;
     height:640px;
+    overflow: -moz-scrollbars-none;
 }
 
 img.video-li {
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
-	width: 25%;
+	width: 150px;
+	height: auto;
 	float: left;
-	min-width: 120px;
 }
 
 p.video-li {
@@ -32,7 +33,7 @@ p.video-li {
 	font-family: 'Viga';
 }
 
-div.vid-name-li {
+div.vid-title-li {
 	width: 67%;
 	float: right;
 	margin-right: 20px;
@@ -64,4 +65,75 @@ li.animated:hover {
 	box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 1);
 	cursor:pointer;
 	color: #00ffa5 !important;
+}
+
+/* Media queries */
+
+@media screen and (max-width: 764px) {
+
+	div.vidlist {
+	  width: -ms-calc(100% - 5px);
+	  width: -moz-calc(100% - 5px);
+	  width: -webkit-calc(100% - 5px);
+	  width: calc(100% - 5px);
+	  height: auto;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+
+	p.video-li {
+		
+		margin-top: 5px;
+		font-size: 20px;
+		font-family: 'Viga';
+	}
+
+	div.vid-title-li {
+		width: 55%;
+		float: right;
+		margin-right: 5px;
+	}
+
+	li.animated {
+
+	}
+
+	ul {
+		width: 100%;
+		margin: 0px;
+	}
+}
+
+@media screen and (min-width: 765px) and (max-width: 1189px) {
+
+	div.vidlist {
+	  width: -ms-calc(50% - 5px);
+	  width: -moz-calc(50% - 5px);
+	  width: -webkit-calc(50% - 5px);
+	  width: calc(50% - 5px);
+	  height: auto;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+
+	p.video-li {
+		margin-top: 5px;
+		font-size: 20px;
+		font-family: 'Viga';
+	}
+
+	div.vid-title-li {
+		width: 55%;
+		float: right;
+		margin-right: 10px;
+	}
+
+	li.animated {
+
+	}
+
+	ul {
+		width: 100%;
+		margin: 0px;
+	}
 }

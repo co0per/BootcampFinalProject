@@ -1,10 +1,12 @@
 body {
 	font-family: sans-serif;
+  margin: 0;
 }
 
 html {
     min-height: 100%;
     background: linear-gradient(to bottom, #00ffc3, #00ffa5);
+    overflow: -moz-scrollbars-none;
 }
 
 @keyframes slideInFromLeft {
