@@ -48,6 +48,14 @@ h3.vid-list-title {
 	animation: 1s ease-in-out 0s 1 slideInFromLeft;
 }
 
+p.vid-list-no-results {
+  margin-bottom: 0px;
+	margin-top: 20px;
+	font-size: 20px;
+	font-family: 'Barrio';
+  color: grey;
+}
+
 .animated {
     margin: 10px;
     overflow: auto;
@@ -82,9 +90,9 @@ li.animated:hover {
 	}
 
 	p.video-li {
-		
+
 		margin-top: 5px;
-		font-size: 20px;
+		font-size: 14px;
 		font-family: 'Viga';
 	}
 

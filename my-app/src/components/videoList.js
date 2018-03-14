@@ -15,7 +15,7 @@ function VideoList(props) {
                              alt = {video.imgAlt}
                              className="video-li"/>
                         <div className="vid-title-li">
-                            <p className="video-li">{video.title}</p>    
+                            <p className="video-li">{video.title}</p>
                         </div>
 
                    </li>
@@ -31,17 +31,17 @@ function VideoList(props) {
 
     return (
         <div className="vidlist">
-            {
-                videos.length > 0
-                    ?   <div>
-                            {favOrRes}
-                            <ul>
-                                {videos}
-                            </ul>
-                        </div>
-                    :   <p> No videos to show </p>
-            }
-
+            <div>
+                {favOrRes}
+                {videos.length > 0 ?
+                  <ul>
+                      {videos}
+                  </ul>
+                  :
+                  <p className="vid-list-no-results">
+                      No videos to show...
+                  </p>}
+            </div>
         </div>
     );
 }
