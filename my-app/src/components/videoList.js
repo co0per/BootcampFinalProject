@@ -4,6 +4,7 @@ import '../css/videoList.css'
 function VideoList(props) {
 
     let videos = props.videos;
+    let favOrRes = props.favOrRes;
 
     if(videos) {
         videos = videos.map((video) => {
@@ -19,15 +20,25 @@ function VideoList(props) {
 
                    </li>
         });
+
+        //favorites or search result sign
+        if(favOrRes){
+            favOrRes = <h3 className="vid-list-title">FAVORITE VIDEOS</h3>;
+        } else {
+            favOrRes = <h3 className="vid-list-title">SEARCH RESULTS</h3>;
+        }
     }
 
     return (
         <div className="vidlist">
             {
                 videos.length > 0
-                    ?   <ul>
-                            {videos}
-                        </ul>
+                    ?   <div>
+                            {favOrRes}
+                            <ul>
+                                {videos}
+                            </ul>
+                        </div>
                     :   <p> No videos to show </p>
             }
 
