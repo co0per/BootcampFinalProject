@@ -1,4 +1,5 @@
 section.vid-area {
+  z-index: 1;
   width: -ms-calc(50% - 30px);
   width: -moz-calc(50% - 30px);
   width: -webkit-calc(50% - 30px);
@@ -78,7 +79,7 @@ article h3 {
 	  width: -moz-calc(100% - 30px);
 	  width: -webkit-calc(100% - 30px);
 	  width: calc(100%);
-	  margin-top: 0px;
+	  margin-top: 30px;
 	  margin-left: 0px;
 	  position: relative;
 	}

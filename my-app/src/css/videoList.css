@@ -40,6 +40,7 @@ div.vid-title-li {
 }
 
 h3.vid-list-title {
+	z-index: -1;
 	margin-bottom: 0px;
 	margin-top: 20px;
 	font-size: 35px;
@@ -49,11 +50,10 @@ h3.vid-list-title {
 }
 
 p.vid-list-no-results {
-  margin-bottom: 0px;
-	margin-top: 20px;
-	font-size: 20px;
+	margin: 20px;
+	font-size: 55px;
 	font-family: 'Barrio';
-  color: grey;
+  	color: black;
 }
 
 .animated {

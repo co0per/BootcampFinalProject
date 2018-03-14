@@ -5,6 +5,7 @@ function VideoList(props) {
 
     let videos = props.videos;
     let favOrRes = props.favOrRes;
+    let firstOrNoRes = props.firstOrNoResult;
 
     if(videos) {
         videos = videos.map((video) => {
@@ -29,17 +30,25 @@ function VideoList(props) {
         }
     }
 
+    // Search videos or no search results sign
+    if(firstOrNoRes){
+        firstOrNoRes = 'No videos found'
+    } else {
+        firstOrNoRes = 'What are you waiting for? Search some videos!'
+    }
+
     return (
         <div className="vidlist">
             <div>
-                {favOrRes}
                 {videos.length > 0 ?
-                  <ul>
-                      {videos}
-                  </ul>
+                    <div>{favOrRes}
+                        <ul>
+                            {videos}
+                        </ul>
+                    </div>
                   :
                   <p className="vid-list-no-results">
-                      No videos to show...
+                      {firstOrNoRes}
                   </p>}
             </div>
         </div>
