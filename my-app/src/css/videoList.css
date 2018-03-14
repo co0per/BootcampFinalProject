@@ -96,8 +96,12 @@ li.animated:hover {
 		font-family: 'Viga';
 	}
 
+  img.video-li {
+    width: 45%;
+  }
+
 	div.vid-title-li {
-		width: 55%;
+		width: 50%;
 		float: right;
 		margin-right: 5px;
 	}
@@ -126,12 +130,17 @@ li.animated:hover {
 
 	p.video-li {
 		margin-top: 5px;
-		font-size: 20px;
+		font-size: 18px;
 		font-family: 'Viga';
 	}
 
+  img.video-li {
+    width: 45%;
+  }
+
+
 	div.vid-title-li {
-		width: 55%;
+		width: 50%;
 		float: right;
 		margin-right: 10px;
 	}

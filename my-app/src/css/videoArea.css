@@ -72,6 +72,12 @@ article h3 {
 }
 
 
+@media screen and (max-width: 1139px) {
+  .iframe-wrapper {
+    height: 300px;
+  }
+}
+
 @media screen and (max-width: 764px) {
 
 	section.vid-area {
@@ -84,4 +90,7 @@ article h3 {
 	  position: relative;
 	}
 
+  .iframe-wrapper {
+  	height: 240px;
+  }
 }

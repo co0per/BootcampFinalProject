@@ -8,9 +8,9 @@ const playerErrPane = "player-err-pane";
 
 //This object contains all the different err messages posibilities.
 const videoError = {
-  badId: "Video Id not valid.",
-  htmlError: "Can't play this video on HTML5 player.",
-  notAvailable: "The requested video is no longer available.",
+  badId: "A not valid video was requested.",
+  htmlError: "Check your internet connection if and error continues this video can't be played on HTML5 player ",
+  notAvailable: "The requested video is no longer available or it is private",
   cantPlay: "The requested video can't be played on this player.",
   unknown: "An unknown error has been produced."
 }

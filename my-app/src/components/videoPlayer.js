@@ -12,7 +12,6 @@ import {
 import VideoPlayerErrorPane from './videoPlayerErrorPane.js';
 
 const videoViewerWidth = "100%";
-const videoViewerHeight = "360px";
 const videoPlayerAreaClass = "video-player-area";
 const iframeWrapperClass = "iframe-wrapper";
 const noPlayerImgClass = "no-video-img";
@@ -30,8 +29,22 @@ export default class VideoPlayer extends React.Component {
       playerErrorCode: null,
       autoplay: true,
       loopplay: false,
-      playerReady: false
+      playerReady: false,
+      videoHeight: (window.innerWidth < 1139 ? (window.innerWidth < 764 ? "240px" : "300px") : "360px")
     }
+  }
+
+  componentDidMount() {
+
+    //Sets a listener for changing video player height when screen dimensions change
+    window.addEventListener('resize', this.updateWindowDimensions.bind(this));
+  }
+
+  //Listens to dimensions changes.
+  updateWindowDimensions() {
+    this.setState({
+      videoHeight: (window.innerWidth < 1139 ? (window.innerWidth < 764 ? "240px" : "300px") : "360px")
+    })
   }
 
   handleChangeCfg(target, value) {
@@ -93,7 +106,7 @@ export default class VideoPlayer extends React.Component {
             video={this.state.playerReady ? this.props.video : null}
             autoplay={this.state.autoplay}
             loopplay={this.state.loopplay}
-            defaultHeight={videoViewerHeight}
+            defaultHeight={this.state.videoHeight}
             defaultWidth={videoViewerWidth}
             onError={this.handleError.bind(this)}
             onReady={this.handleReady.bind(this)}/>

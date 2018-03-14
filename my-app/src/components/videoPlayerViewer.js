@@ -36,6 +36,13 @@ export default class VideoPlayerViewer extends React.Component {
     })
   }
 
+  //If height props is changed player height is modified (this not triggers render)
+  componentWillReceiveProps(nextProps) {
+    if(this.player && this.props.defaultHeight != nextProps.defaultHeight) {
+      this.player.a.height = nextProps.defaultHeight;
+    }
+  }
+
   /*When component is update it loads the video which Id is passed by props.
   This prevents a differed loading*/
   componentDidUpdate() {
@@ -49,7 +56,7 @@ export default class VideoPlayerViewer extends React.Component {
   will only be updated when the selected video is changed*/
   shouldComponentUpdate(nextProps, nextState) {
     if(this.props.video && nextProps.video) {
-      return (this.props.video.id !== nextProps.video.id || this.props.visible !== nextProps.visible);
+      return (this.props.video.id !== nextProps.video.id);
     } else {
       return this.props.video !== nextProps.video;
     }
@@ -81,6 +88,7 @@ export default class VideoPlayerViewer extends React.Component {
     //This switch allows to add more custom behaviour to the player.
     switch(event.data){
       case -1:
+      case 5:
         if(this.props.autoplay) {
           this.player.playVideo();
         }
