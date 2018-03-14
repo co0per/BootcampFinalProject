@@ -21,7 +21,8 @@ class Container extends React.Component {
             favoritesView: false,
             alertAdd: false,
             alertDel: false,
-            alertTimeout: null
+            alertTimeout: null,
+            firstOrNoResult: false
         };
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -40,7 +41,8 @@ class Container extends React.Component {
     handleSearch(videos) {
         this.setState({
             videos: videos,
-            favoritesView: false
+            favoritesView: false,
+            firstOrNoResult: true
         });
     }
 
@@ -115,6 +117,7 @@ class Container extends React.Component {
                 <VideoList videos={this.state.favoritesView ? this.state.favorites :this.state.videos}
                            onClick={video => this.handleClick(video)}
                            favOrRes={this.state.favoritesView}
+                           firstOrNoResult={this.state.firstOrNoResult}
                 />
 
                 { this.state.alertAdd ? <div className="alert">Video added to favorites</div>  : null }
