@@ -55,6 +55,7 @@ p.fav-button:hover {
 }
 
 .alert {
+  z-index: 10;
   position: fixed;
   width: auto;
   height: auto;
