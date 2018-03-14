@@ -55,7 +55,8 @@ class Container extends React.Component {
     handleViewFavorites() {
         if(this.state.favorites) {
           this.setState({
-            favoritesView: true
+            favoritesView: true,
+            firstOrNoResult: true
           });
         }
     }
@@ -90,7 +91,7 @@ class Container extends React.Component {
               alertDel: true,
               alertTimeout: setTimeout(() => {
                 this.setState({
-                  alertAdd: false
+                  alertDel: false
                 })
               }, 3000)
             });
@@ -120,8 +121,8 @@ class Container extends React.Component {
                            firstOrNoResult={this.state.firstOrNoResult}
                 />
 
-                { this.state.alertAdd ? <div className="alert">Video added to favorites</div>  : null }
-                { this.state.alertDel ? <div className="alert">Video removed from favorites</div>  : null }
+                { this.state.alertAdd ? <div className="alert">Video added to favs!</div>  : null }
+                { this.state.alertDel ? <div className="alert">Video removed from favs!</div>  : null }
             </div>
         );
     }
